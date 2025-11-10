@@ -1,4 +1,4 @@
-import Getmovie from "./Getmovie"
+import Getmovie from "./GetMovie"
 
 const ShowMovie = (card,getMovie ) => {
 
