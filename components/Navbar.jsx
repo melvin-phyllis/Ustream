@@ -8,7 +8,7 @@ import Logout from "../controllers/Logout";
 
 export const Navbar = () => {
     const [user, setUser] = useState({})
-  
+
     useEffect(() => {
         const user = Getuserlocal()
         if (user !== null || user !== undefined) {
@@ -47,9 +47,9 @@ export const Navbar = () => {
                                     <li>
                                         <Link
                                             to={"/login"}
-                                            className="btn btn-ghost border border-white/20 text-slate-100 hover:border-emerald-300 hover:text-emerald-200"
+                                            className="btn btn-ghost border  border-white/20 text-slate-100 hover:border-emerald-300 hover:text-emerald-200"
                                         >
-                                            Connexion
+                                            Connexiond
                                         </Link>
                                     </li>
                                     <li>
@@ -85,7 +85,7 @@ export const Navbar = () => {
                     </ul>
                 </div>
 
-                <div className="navbar-end gap-3  ">
+                <div className="navbar-end gap-3 md:flex hidden ">
                     {!user ? (
                         <>
                             <li>

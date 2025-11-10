@@ -7,6 +7,7 @@ import SignupForm from "../../controllers/SignupForm"
 const Signup = () => {
 
     const navigate = useNavigate()
+     const [load, setLoad] = useState(false)
     const [loading, setLoading] = useState(true)
 
     const [forminput, setForminput] = useState({
@@ -22,9 +23,8 @@ const Signup = () => {
             ...prev, [name]: value
         }))
 
-       
-    }
 
+    }
 
 
     useEffect(() => {
@@ -51,7 +51,7 @@ const Signup = () => {
                                 </p>
                             </div>
 
-                            <form className="space-y-4" onSubmit={(e) => SignupForm(e, forminput,navigate)}>
+                            <form className="space-y-4" onSubmit={(e) => SignupForm(e, forminput,navigate,setLoad)}>
                                 <label className="form-control w-full">
                                     <span className="label-text text-slate-300">Nom complet</span>
                                     <input
@@ -99,11 +99,13 @@ const Signup = () => {
 
 
 
+
                                 <button
                                     type="submit"
-                                    className="btn mt-5 btn-primary w-full bg-linear-to-r from-emerald-400 to-cyan-400 border-none text-slate-950 font-semibold"
+                                    disabled={load ? true : false}
+                                    className={`btn btn-primary w-full bg-linear-to-r   border-none text-slate-950 font-semibold mt-5 ${!load ? "from-emerald-400 to-cyan-400" : "bg-gray-400"}`}
                                 >
-                                    S'inscrire
+                                    {load ? (<>Chargement ...<span className="loading loading-dots loading-lg"></span></>) : "S'inscrire"}
                                 </button>
                             </form>
 

@@ -1,9 +1,11 @@
 import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth"
 import { auth } from "../firebase/firebase-config"
+import { TostifyError, TostifySucces } from "../Toast/Tostify"
 import Save_user from "./Save_user"
 
-const SignupForm = async (e, forminput,navigate) => {
+const SignupForm = async (e, forminput, navigate, setLoad) => {
     try {
+        setLoad(true)
         e?.preventDefault()
 
         if (forminput?.password !== forminput?.comfirmpassword) return (alert("les deux mot de passe doivent etre identique"))
@@ -21,14 +23,17 @@ const SignupForm = async (e, forminput,navigate) => {
             status: "online"
         }
         const data = await Save_user(body)
-        
+
         if (data?.message === "utilisateur enregistrer") {
+            TostifySucces("Inscription Reussi")
             navigate("/login")
         }
     } catch (error) {
         console.log(error.message)
         const messageError = error.message
-        messageError == "Firebase: Error (auth/email-already-in-use)." ? alert("L'emal est deja utiliser veuiller en utiliser un autre ") : alert("une erreur c'est produite")
+        messageError == "Firebase: Error (auth/email-already-in-use)." ? TostifyError("L'emal est deja utiliser veuiller en utiliser un autre ") : TostifyError("une erreur c'est produite")
+    } finally {
+        setLoad(false)
     }
 }
 
