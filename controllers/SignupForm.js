@@ -25,7 +25,9 @@ const SignupForm = async (e, forminput, navigate, setLoad) => {
         const data = await Save_user(body)
 
         if (data?.message === "utilisateur enregistrer") {
-            TostifySucces("Inscription Reussi")
+            
+            TostifySucces("Inscription réussie ! Un e-mail de confirmation vous a été envoyé. Consultez votre boîte de réception.")
+
             navigate("/login")
         }
     } catch (error) {

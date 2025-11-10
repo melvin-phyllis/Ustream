@@ -2,6 +2,9 @@
 
 Application realisee par **Melvin, Developpeur Full Stack Junior**, pour illustrer la manipulation des hooks React autour d'un catalogue de films connecte a Firebase.
 
+## Acces en ligne
+- Demo Netlify : https://u-stream.netlify.app/
+
 ---
 
 ## Apercu

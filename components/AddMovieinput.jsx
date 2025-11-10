@@ -114,7 +114,7 @@ const AddMovieinput = () => {
                             <button
                                 type="submit"
                                 disabled={load ? true : false}
-                                className={`btn btn-primary w-full bg-linear-to-r   border-none text-slate-950 font-semibold mt-5 ${!load ? "from-emerald-400 to-cyan-400" : "bg-gray-400"}`}
+                                className={`btn btn-primary   bg-linear-to-r   border-none text-slate-950 font-semibold  ${!load ? "from-emerald-400 to-cyan-400" : "bg-gray-400"}`}
                             >
                                 {load ? (<>Chargement ...<span className="loading loading-dots loading-lg"></span></>) : "Enregistrer le film"}
                             </button>
