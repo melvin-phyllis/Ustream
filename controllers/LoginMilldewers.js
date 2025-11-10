@@ -27,7 +27,7 @@ const LoginMilldewers = (navigate, setLoading, page) => {
                 const req = await Save_user(user)
 
                 if (req?.message == "utilisateur enregistrer") {
-                    console.log(req?.message)
+                  
                     console
                     if (page == "/backoffice") {
                         setTimeout(() => setLoading(false), 1000)

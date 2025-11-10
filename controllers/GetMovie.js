@@ -3,7 +3,7 @@ const GetMovie = (card, getMovie) => {
     try {
 
 
-        console.log(card)
+
 
         getMovie(card)
 

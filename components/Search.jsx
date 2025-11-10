@@ -15,7 +15,7 @@ const Search = ({ setMovies, data }) => {
 
         setMovies(Newarray)
 
-        console.log(data)
+
     }
 
 

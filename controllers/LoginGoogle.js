@@ -7,7 +7,7 @@ const LoginGoogle = async (navigate) => {
     try {
 
         const provider = new GoogleAuthProvider()
-console.log(auth)
+
         const req = await signInWithPopup(auth, provider)
         const user = req?.user
 

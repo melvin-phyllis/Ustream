@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
+import { Loading } from "../../components/Loading"
 import LoginBtnGoogle from "../../components/LoginBtnGoogle"
 import LoginForm from "../../controllers/LoginForm"
 import LoginMilldewers from "../../controllers/LoginMilldewers"
-import { Loading } from "../../components/Loading"
 
 const Login = () => {
 
     const navigate = useNavigate();
 
     const [loading, setLoading] = useState(true)
+
+    const [load, setLoad] = useState(false)
 
     const [forminput, setForminput] = useState({
 
@@ -31,7 +33,7 @@ const Login = () => {
 
 
     if (loading) {
-        return (<Loading/>)
+        return (<Loading />)
     }
     return (
         <div className="min-h-screen bg-linear-to-br from-slate-950 via-indigo-950 to-slate-900 px-4 py-12 text-white sm:px-6 lg:px-12">
@@ -48,7 +50,7 @@ const Login = () => {
                                 </p>
                             </div>
 
-                            <form className="space-y-4" onSubmit={(e) => LoginForm(e, forminput, navigate)}>
+                            <form className="space-y-7" onSubmit={(e) => LoginForm(e, forminput, navigate,setLoad)}>
                                 <label className="form-control w-full">
                                     <span className="label-text text-slate-300">Adresse email</span>
                                     <input
@@ -73,9 +75,10 @@ const Login = () => {
                                 </label>
                                 <button
                                     type="submit"
-                                    className="btn btn-primary w-full bg-linear-to-r from-emerald-400 to-cyan-400 border-none text-slate-950 font-semibold"
+                                    disabled={load ? true : false}
+                                    className={`btn btn-primary w-full bg-linear-to-r   border-none text-slate-950 font-semibold mt-5 ${!load ? "from-emerald-400 to-cyan-400" : "bg-gray-400"}`}
                                 >
-                                    Se connecter
+                                    {load ? (<>Chargement ...<span className="loading loading-dots loading-lg"></span></>) : "Se connecter"}
                                 </button>
                             </form>
                             <div className="divider divider-neutral">ou</div>

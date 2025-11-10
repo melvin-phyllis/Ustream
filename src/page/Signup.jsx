@@ -22,7 +22,7 @@ const Signup = () => {
             ...prev, [name]: value
         }))
 
-        console.log(forminput)
+       
     }
 
 

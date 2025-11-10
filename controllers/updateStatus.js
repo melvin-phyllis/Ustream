@@ -20,7 +20,7 @@ const updateStatus = async (id, updateMovie, MovieList, status) => {
 
         updateMovie(id, movie)
 
-        console.log(MovieList)
+      
     } catch (error) {
 
         console.log(error)

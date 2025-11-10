@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import GetAllMovie from "../controllers/GetAllMovie";
 import MovieStore from "../store/MovieStore";
@@ -13,13 +13,14 @@ import updateStatus from "../controllers/updateStatus";
 
 const CalalogueListMovie = () => {
     const { MovieList, setMovieList, getMovie, updateMovie } = MovieStore()
+const id = useRef()
 
     useEffect(() => { GetAllMovie(setMovieList) }, [])
     return (
         <>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 pb-4">
-                {MovieList.length > 0 ? (<>{MovieList.map((card) => (
-                    <article className="card  group h-full relative overflow-visible border border-white/10 bg-linear-to-b from-slate-900/90 via-slate-900/70 to-black  text-white shadow-2xl shadow-emerald-500/20 transition-all duration-300 hover:-translate-y-2 hover:border-emerald-300/60 hover:z-50 hover:scale-105">
+                {MovieList.length > 0 ? (<>{MovieList.map((card,) => (
+                    <article  key={card?.id || index } className="card  group h-full relative overflow-visible border border-white/10 bg-linear-to-b from-slate-900/90 via-slate-900/70 to-black  text-white shadow-2xl shadow-emerald-500/20 transition-all duration-300 hover:-translate-y-2 hover:border-emerald-300/60 hover:z-50 hover:scale-105">
                         <figure className="relative">
                             <img
                                 className="h-56 w-full rounded-3xl object-cover grayscale-15 transition duration-300 group-hover:grayscale-0 group-hover:scale-105"
@@ -27,7 +28,7 @@ const CalalogueListMovie = () => {
                                 alt="Shoes"
                             />
                             <div className="absolute top-4 right-3 flex gap-2">
-                                <button className=" btn-xs  btn btn-outline btn-primary" onClick={() => ShowMovie(card, MovieList)}><GrView /></button>
+                                <button className=" btn-xs  btn btn-outline btn-primary" onClick={() => ShowMovie(card, getMovie)}><GrView /></button>
                                 <button type="button" className="btn btn-outline btn-xs btn-error" onClick={() => DeleteMovie(card.id, MovieList, setMovieList)}><RiDeleteBin5Line /></button>
                             </div>
                             <div className="absolute bottom-4 left-4 rounded-full bg-white/ px-3 py-1 text-xs uppercase tracking-wide text-white/80 backdrop-blur">{card?.category}</div>

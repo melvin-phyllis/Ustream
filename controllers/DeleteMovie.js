@@ -3,7 +3,7 @@ import axios from "axios"
 const DeleteMovie = async (id, MovieList, setMovieList) => {
     try {
 
-        console.log(id)
+
 
         const userLocal = localStorage.getItem("user")
 

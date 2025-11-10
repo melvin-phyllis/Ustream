@@ -8,7 +8,7 @@ const Logout = async () => {
         if (typeof window !== "undefined") {
             const userLocal = localStorage.getItem("user")
             const user = userLocal ? JSON.parse(userLocal)?.id : null
-            console.log('user', user)
+         
             const data = await Update_Status(user, { status: "offline" })
 
             if (data?.message == "Deconnexion reussi") {

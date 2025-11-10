@@ -1,9 +1,12 @@
 import { sendEmailVerification, signInWithEmailAndPassword } from "firebase/auth"
 import { auth } from "../firebase/firebase-config"
 import Save_user from "./Save_user"
+import { TostifyError, TostifySucces } from "../Toast/Tostify"
 
-const LoginForm = async (e, forminput,navigate) => {
+const LoginForm = async (e, forminput, navigate, setLoad) => {
     try {
+
+        setLoad(true)
         e.preventDefault()
 
         const data = await signInWithEmailAndPassword(auth, forminput?.email, forminput?.password)
@@ -23,13 +26,20 @@ const LoginForm = async (e, forminput,navigate) => {
         const req = await Save_user(body)
 
 
-        console.log(req?.data)
+
 
         if (req?.message === "utilisateur enregistrer") {
-           navigate("/")
+            TostifySucces("Connexion Reussi")
+            navigate("/")
         }
     } catch (error) {
-        console.log(error)
+        console.log(error.message)
+        const messageError = error.message
+
+        messageError == "Firebase: Error (auth/invalid-credential)." ? TostifyError("Mail ou Mots de passe incorrect"):TostifyError("Une erreur c'est produite")
+
+    } finally {
+        setLoad(false)
     }
 }
 

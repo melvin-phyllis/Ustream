@@ -55,7 +55,7 @@ const Movies = () => {
 
                     {movies?.length > 0 ? (<>{movies.map((card) => (
 
-                        <article className="card  group h-full relative overflow-visible border border-white/10 bg-linear-to-b from-slate-900/90 via-slate-900/70 to-black  text-white shadow-2xl shadow-emerald-500/20 transition-all duration-300 hover:-translate-y-2 hover:border-emerald-300/60 hover:z-50 hover:scale-105">
+                        <article key={card?.id} className="card  group h-full relative overflow-visible border border-white/10 bg-linear-to-b from-slate-900/90 via-slate-900/70 to-black  text-white shadow-2xl shadow-emerald-500/20 transition-all duration-300 hover:-translate-y-2 hover:border-emerald-300/60 hover:z-50 hover:scale-105">
                             <figure className="relative">
                                 <img
                                     className="h-56 w-full rounded-3xl object-cover grayscale-15 transition duration-300 group-hover:grayscale-0 group-hover:scale-105"

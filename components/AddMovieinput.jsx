@@ -9,6 +9,8 @@ const AddMovieinput = () => {
 
     const formRef = useRef(null)
 
+
+
     const { updateMovieList } = MovieStore()
 
     const [movie, setMovie] = useState({
@@ -27,10 +29,10 @@ const AddMovieinput = () => {
         const { name, value } = e.target
         setMovie(prev => ({ ...prev, [name]: value }))
 
-        console.log(movie)
+
     }
 
-
+    const [load, setLoad] = useState(false)
     return (
         <>
             <aside className="flex h-fit flex-col gap-4 rounded-3xl border border-white/5 bg-white/5 p-4 text-sm text-white/80">
@@ -51,7 +53,7 @@ const AddMovieinput = () => {
                         <h3 className="text-2xl font-semibold text-white">Ajouter un film</h3>
                         <p className="text-sm text-white/70">Completez les informations pour enrichir votre carrousel.</p>
                     </div>
-                    <form ref={formRef} className="space-y-4 px-6 pb-6 pt-4 text-sm font-medium text-white/80" onSubmit={(e) => AddMovie(e, movie, updateMovieList, formRef)} >
+                    <form ref={formRef} className="space-y-4 px-6 pb-6 pt-4 text-sm font-medium text-white/80" onSubmit={(e) => AddMovie(e, movie, updateMovieList, formRef, setLoad)} >
                         <label className="form-control w-full">
                             <span className="label-text text-slate-300">Titre du film</span>
                             <input
@@ -69,7 +71,7 @@ const AddMovieinput = () => {
                                 type="text"
                                 name="shortDescription"
                                 onChange={(e) => HandleChange(e)}
-                                placeholder="Une phrase resume"required
+                                placeholder="Une phrase resume" required
                                 className="input input-bordered w-full bg-slate-950/60 text-white placeholder:text-slate-500 focus:border-emerald-300 focus:outline-none"
                             />
                         </label>
@@ -80,7 +82,7 @@ const AddMovieinput = () => {
                                 onChange={(e) => HandleChange(e)}
                                 placeholder="Description complete du film..."
                                 className="textarea textarea-bordered w-full bg-slate-950/60 text-white placeholder:text-slate-500 focus:border-emerald-300 focus:outline-none"
-                                rows={4}required
+                                rows={4} required
                             />
                         </label>
                         <label className="form-control w-full">
@@ -91,7 +93,7 @@ const AddMovieinput = () => {
                                 onChange={(e) => HandleChange(e)}
                                 placeholder="https://exemple.com/affiche.jpg"
                                 className="input input-bordered w-full bg-slate-950/60 text-white placeholder:text-slate-500 focus:border-emerald-300 focus:outline-none"
-                            required
+                                required
                             />
                         </label>
                         <label className="form-control w-full">
@@ -111,9 +113,10 @@ const AddMovieinput = () => {
                         <div className="modal-action flex items-center justify-center gap-3 pt-2">
                             <button
                                 type="submit"
-                                className="btn border-none bg-linear-to-r from-emerald-400 to-cyan-400 px-8 text-slate-950 hover:brightness-110"
+                                disabled={load ? true : false}
+                                className={`btn btn-primary w-full bg-linear-to-r   border-none text-slate-950 font-semibold mt-5 ${!load ? "from-emerald-400 to-cyan-400" : "bg-gray-400"}`}
                             >
-                                Enregistrer le film
+                                {load ? (<>Chargement ...<span className="loading loading-dots loading-lg"></span></>) : "Enregistrer le film"}
                             </button>
                             <label
                                 htmlFor="my_modal_6"
@@ -129,5 +132,6 @@ const AddMovieinput = () => {
         </>
     )
 }
+
 
 export default AddMovieinput
