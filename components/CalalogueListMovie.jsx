@@ -5,9 +5,10 @@ import MovieStore from "../store/MovieStore";
 
 import { GrView } from "react-icons/gr";
 import DeleteMovie from "../controllers/DeleteMovie";
-import Getmovie from "../controllers/Getmovie";
-import updateStatus from "../controllers/updateStatus";
+
+import GetMovie from "../controllers/GetMovie";
 import ShowMovie from "../controllers/ShowMovie";
+import updateStatus from "../controllers/updateStatus";
 
 
 const CalalogueListMovie = () => {
@@ -26,7 +27,7 @@ const CalalogueListMovie = () => {
                                 alt="Shoes"
                             />
                             <div className="absolute top-4 right-3 flex gap-2">
-                                <button className=" btn-xs  btn btn-outline btn-primary"  onClick={() =>ShowMovie(card,MovieList)}><GrView /></button>
+                                <button className=" btn-xs  btn btn-outline btn-primary" onClick={() => ShowMovie(card, MovieList)}><GrView /></button>
                                 <button type="button" className="btn btn-outline btn-xs btn-error" onClick={() => DeleteMovie(card.id, MovieList, setMovieList)}><RiDeleteBin5Line /></button>
                             </div>
                             <div className="absolute bottom-4 left-4 rounded-full bg-white/ px-3 py-1 text-xs uppercase tracking-wide text-white/80 backdrop-blur">{card?.category}</div>
@@ -38,7 +39,7 @@ const CalalogueListMovie = () => {
                             </div>
                             <div className="card-actions flex items-center justify-center mt-5 gap-3">
                                 <button type="button" onClick={() => updateStatus(card?.id, updateMovie, MovieList, card?.status)} className={`btn btn-sm border-none bg-linear-to-r ${card?.status === "public" ? "btn-error" : card?.status === "private" && " from-emerald-400 to-cyan-400"}   text-black shadow-lg shadow-emerald-500/20 hover:opacity-90 hover:scale-105 transition-transform`} >{card?.status === "public" ? " rendre priver" : card?.status === "private" && "Publier"}</button>
-                                <label htmlFor="my_modal_9" onClick={() => Getmovie(card, getMovie)} className="btn btn-sm border-none bg-linear-to-r from-emerald-400 to-cyan-400 text-black shadow-lg shadow-emerald-500/20 hover:opacity-90 hover:scale-105 transition-transform">Modifier</label>
+                                <label htmlFor="my_modal_9" onClick={() => GetMovie(card, getMovie)} className="btn btn-sm border-none bg-linear-to-r from-emerald-400 to-cyan-400 text-black shadow-lg shadow-emerald-500/20 hover:opacity-90 hover:scale-105 transition-transform">Modifier</label>
                             </div>
                         </div>
                     </article>

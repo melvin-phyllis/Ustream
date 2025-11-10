@@ -1,5 +1,5 @@
 
-const Getmovie = (card, getMovie) => {
+const GetMovie = (card, getMovie) => {
     try {
 
 
@@ -12,4 +12,4 @@ const Getmovie = (card, getMovie) => {
     }
 }
 
-export default Getmovie
+export default GetMovie
